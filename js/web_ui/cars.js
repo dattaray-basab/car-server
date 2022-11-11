@@ -1,8 +1,13 @@
 PROTOCOL = 'http://'
 DOMAIN = 'localhost:3005'
-PATH = "/cars"
+PORT = ''
+URL = PROTOCOL + DOMAIN + PORT
 
-URL = PROTOCOL + DOMAIN + PATH
+PATH = "/cars"
+HREF = URL + PATH
+
+
+
 
 function fn_createGuid()
 {
@@ -23,7 +28,7 @@ fn_populate = (container_id, list) => {
 }
 
 async function getCars(){
-    fetch(URL, {
+    fetch(HREF, {
 
         // Adding method type
         method: "GET",
@@ -52,7 +57,7 @@ async function getCars(){
 async function postCar(){
     // d = new Date().getTime();
     id = fn_createGuid()
-    fetch(URL, {
+    fetch(HREF, {
 
         // Adding method type
         method: "POST",
