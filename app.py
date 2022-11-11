@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 _cars = []
 
-@app.route("/cars/add", methods= ['POST'])
+@app.route("/cars", methods= ['POST'])
 def add_one_car():
     global _cars
 
