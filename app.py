@@ -9,6 +9,8 @@ _cars = []
 
 @app.route("/cars/add", methods= ['POST'])
 def add_one_car():
+    global _cars
+
     car = request.get_json()
     car["id"] = str( uuid.uuid4() )
 
@@ -17,24 +19,11 @@ def add_one_car():
     return jsonify(status= 'success', num_cars = len(_cars))
 
 
-# @app.route("/cars/add/<car>", methods= ['GET'])
-# def add_car(id):
-#     x = id
-#
-#     car = {
-#         "year": 1979,
-#         "make": "cheyy",
-#         "model": "pinto",
-#         "owner_id": 1
-#     }
-#     car["id"] = str(uuid.uuid4())
-#     _cars.append(car)
-#     return _cars
-    # spec = {"name": "car_server"}
-    # return jsonify(spec)
-
 @app.route("/cars", methods= ['GET'])
 def get_cars():
+    global _cars
+
+
     return _cars
     # spec = {"name": "car_server"}
     # return jsonify(spec)

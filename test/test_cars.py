@@ -4,17 +4,8 @@ import os.path
 
 from requests import request
 
-
-
-# url = f"http://localhost:7073/api/{API_END_POINT}"
-
-
 overriding_directives = {"DEFAULT_SPEED": 20, "NUM_OF_SEQUENTIAL_ROUNDS": 1, "NUM_OF_SELECTION_ROUNDS": 1}
 
-# in_pkg = {
-#     'DIRECTIVES': overriding_directives
-# }
-# payload = json.dumps(in_pkg)
 @pytest.fixture(scope="module")
 def fixture_eval():
     site_addr = 'http://127.0.0.1:5000/'
@@ -36,13 +27,16 @@ def test_get_cars(fixture_eval):
 
     print()
     print(str(response.content))
-    print()
+    json_object = json.loads( response.content )
+    assert type(json_object) == list
+    print(f'num of items = {len(json_object)}')
+    print(json_object)
     print(f'HTTP_STATUS_CODE: {response.status_code}')
 
 def test_post_a_car(fixture_eval):
     site_addr = fixture_eval
 
-    rel_addr = 'cars/add/'
+    rel_addr = 'cars/add'
 
     url = os.path.join( site_addr, rel_addr )
 
@@ -62,3 +56,5 @@ def test_post_a_car(fixture_eval):
 
     print(str(response.content))
     print(f'HTTP_STATUS_CODE: {response.status_code}')
+    assert response.status_code == 200
+    x = 1
