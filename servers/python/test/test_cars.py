@@ -34,27 +34,6 @@ def test_get_home(fixture_eval):
     print(f'HTTP_STATUS_CODE: {response.status_code}')
     assert response.status_code == 200
 
-def test_get_cars(fixture_eval):
-    site_addr = fixture_eval
-
-    rel_addr = 'cars'
-
-    url = os.path.join( site_addr, rel_addr )
-
-    headers = {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-    }
-    response = request("GET", url, headers=headers)
-
-    print()
-    print(str(response.content))
-    json_object = json.loads( response.content )
-    assert type(json_object) == list
-    print(f'num of items = {len(json_object)}')
-    print(json_object)
-    print(f'HTTP_STATUS_CODE: {response.status_code}')
-    assert response.status_code == 200
 
 def test_post_a_car(fixture_eval):
     site_addr = fixture_eval
@@ -81,3 +60,26 @@ def test_post_a_car(fixture_eval):
     print(f'HTTP_STATUS_CODE: {response.status_code}')
     assert response.status_code == 200
     x = 1
+
+
+def test_get_cars(fixture_eval):
+    site_addr = fixture_eval
+
+    rel_addr = 'cars'
+
+    url = os.path.join( site_addr, rel_addr )
+
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+    }
+    response = request("GET", url, headers=headers)
+
+    print()
+    print(str(response.content))
+    json_object = json.loads( response.content )
+    assert type(json_object) == list
+    print(f'num of items = {len(json_object)}')
+    print(json_object)
+    print(f'HTTP_STATUS_CODE: {response.status_code}')
+    assert response.status_code == 200

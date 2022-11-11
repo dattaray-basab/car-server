@@ -1,12 +1,19 @@
-PROTOCOL = 'http://'
-DOMAIN = '127.0.0.1'
-PORT = ':5000'
-PATH = "/cars"
+const CROSS_ADDRESS = true
 
-PROTOCOL = 'http://'
-DOMAIN = 'localhost'
-PORT = ':3005'
-PATH = "/cars"
+// original address
+var PROTOCOL = 'http://'
+var DOMAIN = 'localhost'
+var PORT = ':3005'
+var PATH = "/cars"
+
+if (CROSS_ADDRESS) {
+    // cross address
+    PROTOCOL = 'http://'
+    DOMAIN = '127.0.0.1'
+    PORT = ':5000'
+    PATH = "/cars"
+}
+
 
 url = PROTOCOL + DOMAIN + PORT
 href = url + PATH
@@ -84,8 +91,11 @@ async function postCar(){
                 console.log(json);
                 changeStatus('added new car !!!');
             })
-        .catch(
-            err => console.log(err)
+        .catch( err =>
+            {
+                console.log(err);
+            }
+
         )
 }
 
