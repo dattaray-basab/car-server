@@ -9,7 +9,7 @@ _cars = []
 
 @app.route("/cars", methods= ['POST'])
 def add_one_car():
-    global _cars
+    # global _cars
 
     car = request.get_json()
     car["id"] = str( uuid.uuid4() )
@@ -21,7 +21,7 @@ def add_one_car():
 
 @app.route("/cars", methods= ['GET'])
 def get_cars():
-    global _cars
+    # global _cars
 
 
     return _cars
